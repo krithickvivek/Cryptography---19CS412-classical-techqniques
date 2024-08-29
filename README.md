@@ -30,51 +30,56 @@ Implementation using C or pyhton code
 
 
 ## PROGRAM:
-PROGRAM:
-CaearCipher.
+### CaearCipher
+```
 #include <stdio.h>
 #include <stdlib.h>
  
-// Function to perform Caesar Cipher encryption void caesarEncrypt(char *text, int key) {
-   for (int i = 0; text[i] != '\0'; i++) { char c = text[i];
-// Check if the character is an uppercase letter 
-    if (c >= 'A' && c <= 'Z') {
-    text[i] = ((c - 'A' + key) % 26 + 26) % 26 + 'A';
-    }
-// Check if the character is a lowercase letter
-    else if (c >= 'a' && c <= 'z') {
-        text[i] = ((c - 'a' + key) % 26 + 26) % 26 + 'a';
-    }
-// Ignore non-alphabetic characters
+// Function to perform Caesar Cipher encryption
+
+void caesarEncrypt(char *text, int key)
+{
+   for (int i = 0; text[i] != '\0'; i++)
+    {
+        char c = text[i];
+        if (c >= 'A' && c <= 'Z')
+        {
+            text[i] = ((c - 'A' + key) % 26 + 26) % 26 + 'A';
+        }
+        else if (c >= 'a' && c <= 'z')
+        {
+            text[i] = ((c - 'a' + key) % 26 + 26) % 26 + 'a';
+        }
     }
 }
 
-// Function to perform Caesar Cipher decryption 
-void caesarDecrypt(char *text, int key) {
-// Decryption is the same as encryption with a negative key 
-caesarEncrypt(text, -key);
+// Function to perform Caesar Cipher decryption
+
+void caesarDecrypt(char *text, int key)
+{
+    caesarEncrypt(text, -key);
 }
 
-int main() {
-char message[100]; // Declare a character array to store the message int key;
-
-printf("Enter the message to encrypt: ");
-fgets(message, sizeof(message), stdin); // Read input from the user printf("Enter the Caesar Cipher key (an integer): ");
-scanf("%d", &key); // Read the key from the user
-// Encrypt the message using the Caesar Cipher caesarEncrypt(message, key); printf("Encrypted Message: %s", message);
-// Decrypt the message back to the original
- 
-caesarDecrypt(message, key); printf("Decrypted Message: %s", message); return 0;
+int main()
+{
+    char message[100];
+    int key;
+    printf("Enter the message to encrypt: ");
+    fgets(message, sizeof(message), stdin);
+    printf("Enter the Caesar Cipher key (an integer): ");
+    scanf("%d", &key);
+    caesarEncrypt(message, key);
+    printf("Encrypted Message: %s", message);
+    caesarDecrypt(message, key);
+    printf("Decrypted Message: %s", message);
+    return 0;
 }
-
-
+```
 ## OUTPUT:
-OUTPUT:
-Simulating Caesar Cipher
+### Simulating Caesar Cipher
 
+![image](https://github.com/user-attachments/assets/89327cd8-cbb0-49ce-bbd3-4889fb2bcccc)
 
-Input : Anna University
-Encrypted Message : Dqqd Xqlyhuvlwb Decrypted Message : Anna University
 
 ## RESULT:
 The program is executed successfully
@@ -119,65 +124,86 @@ To decrypt, use the INVERSE (opposite) of the last 3 rules, and the 1st as-is (d
 
 
 ## PROGRAM:
+```
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define SIZE 30
 
-// Function to convert the string to lowercase void toLowerCase(char plain[], int ps)
+// Function to convert the string to lowercase
+
+void toLowerCase(char plain[], int ps)
 {
-int i;
-for (i = 0; i < ps; i++) {
-if (plain[i] > 64 && plain[i] < 91)
- 
-plain[i] += 32;
-}
+    int i;
+    for (i = 0; i < ps; i++)
+    {
+        if (plain[i] > 64 && plain[i] < 91)
+        {
+            plain[i] += 32;
+        }
+    }
 }
 
-// Function to remove all spaces in a string 
+// Function to remove all spaces in a string
+
 int removeSpaces(char* plain, int ps)
 {
-int i, count = 0;
-for (i = 0; i < ps; i++)
-if (plain[i] != ' ')
-plain[count++] = plain[i];
-plain[count] = '\0'; return count;
+    int i, count = 0;
+    for (i = 0; i < ps; i++)
+    {    
+        if (plain[i] != ' ')
+        {    
+            plain[count++] = plain[i];
+            plain[count] = '\0'; return count;
+        }
+    }
 }
 
 // Function to generate the 5x5 key square
+
 void generateKeyTable(char key[], int ks, char keyT[5][5])
 {
-int i, j, k, flag = 0, *dicty;
-
-// a 26 character hashmap
-// to store count of the alphabet dicty = (int*)calloc(26, sizeof(int)); for (i = 0; i < ks; i++) {
-if (key[i] != 'j')
-dicty[key[i] - 97] = 2;
+    int i, j, k, flag = 0, *dicty;
+    dicty = (int*)calloc(26, sizeof(int));
+    for (i = 0; i < ks; i++)
+    {
+        if (key[i] != 'j')
+        {
+            dicty[key[i] - 97] = 2;
+        }
+    }
 }
 
 dicty['j' - 97] = 1;
-
 i = 0;
 j = 0;
-for (k = 0; k < ks; k++) {
-if (dicty[key[k] - 97] == 2) {
-dicty[key[k] - 97] -= 1;
-keyT[i][j] = key[k]; j++;
-if (j == 5) {
-i++; j = 0;
-}
-}
+for (k = 0; k < ks; k++)
+{
+    if (dicty[key[k] - 97] == 2)
+    {
+        dicty[key[k] - 97] -= 1;
+        keyT[i][j] = key[k];
+        j++;
+        if (j == 5)
+        {
+            i++;
+            j = 0;
+        }
+    }
 }
 
-for (k = 0; k < 26; k++) {
-if (dicty[k] == 0) {
-keyT[i][j] = (char)(k + 97);
- 
-j++;
-if (j == 5) {
-i++; j = 0;
-}
-}
+for (k = 0; k < 26; k++)
+{
+    if (dicty[k] == 0)
+    {
+        keyT[i][j] = (char)(k + 97);
+        j++;
+        if (j == 5)
+        {
+            i++;
+            j = 0;
+        }
+    }
 }
 }
 // Function to search for the characters of a digraph
