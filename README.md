@@ -280,7 +280,7 @@ int main() {
     printf("Key text: %s\n", key);
 
     // Plaintext to be encrypted
-    strcpy(str, "KANISHKA");
+    strcpy(str, "KRITHICK");
     printf("Plain text: %s\n", str);
 
     // Encrypt using Playfair Cipher
@@ -375,7 +375,7 @@ int main() {
     char dec[1000] = "";
     int n;
 
-    strcpy(msg, "KANISHKA");
+    strcpy(msg, "KRITHICK");
     printf("Input message : %s\n", msg);
 
     // Convert the input message to uppercase
