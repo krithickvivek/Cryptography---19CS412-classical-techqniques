@@ -30,7 +30,7 @@ Implementation using C or pyhton code
 
 
 ## PROGRAM:
-### CaearCipher
+### CaesarCipher
 ```
 #include <stdio.h>
 #include <stdlib.h>
