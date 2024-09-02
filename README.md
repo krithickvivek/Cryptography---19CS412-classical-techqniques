@@ -534,7 +534,8 @@ void decipher() {
 }
 ```
 ## OUTPUT:
-![image](https://github.com/user-attachments/assets/f7f45ceb-d453-4f21-a44a-b210e733fec5)
+![image](https://github.com/user-attachments/assets/b8177d77-eb02-4d9e-9bf5-46f630758a04)
+
 
 ## RESULT:
 The program is executed successfully
