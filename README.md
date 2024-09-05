@@ -370,8 +370,9 @@ int main() {
     char dec[1000] = "";
     int n;
 
-    strcpy(msg, "KRITHICK");
-    printf("Input message : %s\n", msg);
+    
+    printf("Input message : ");
+    scanf("%[^\n]%*c",msg);
 
     // Convert the input message to uppercase
     for (int i = 0; i < strlen(msg); i++) {
