@@ -275,15 +275,10 @@ void encryptByPlayfairCipher(char str[], char key[]) {
 int main() {
     char str[SIZE], key[SIZE];
 
-    // Key to be encrypted
-    strcpy(key, "SAVEETHA");
-    printf("Key text: %s\n", key);
-
-    // Plaintext to be encrypted
-    strcpy(str, "KRITHICK");
-    printf("Plain text: %s\n", str);
-
-    // Encrypt using Playfair Cipher
+    printf("Key text: %s", key);
+    scanf("%[^\n]%*c",key);
+    printf("Plain text: %s", str);
+    scanf("%[^\n]%*c",str);
     encryptByPlayfairCipher(str, key);
     printf("Cipher text: %s\n", str);
 
